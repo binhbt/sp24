@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "142044028780",
+    "firebase_url": "https://speak24-5a21f.firebaseio.com",
+    "project_id": "speak24-5a21f",
+    "storage_bucket": "speak24-5a21f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142044028780:android:e1cf5ce6274e884e",
+        "android_client_info": {
+          "package_name": "com.fap.speak24"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142044028780-i3rh43ujdcksdukhq5nv5mv13hv7g36k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3sUTsTfMC3wgQGDL4u_YacqM-YXTMxAI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
