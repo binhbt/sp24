@@ -28,3 +28,5 @@
 -keepclassmembers class com.yourcompany.models.** {
   *;
 }
+-keep class com.wang.avi.** { *; }
+-keep class com.wang.avi.indicators.** { *; }

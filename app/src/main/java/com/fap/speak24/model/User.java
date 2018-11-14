@@ -1,6 +1,10 @@
 package com.fap.speak24.model;
 
-public class User {
+import com.fap.speak24.holder.UserItemView;
+import com.vn.fa.adapter.multipleviewtype.DataBinder;
+import com.vn.fa.adapter.multipleviewtype.IViewBinder;
+
+public class User implements IViewBinder {
     private int id =0;
     private String user_name="";
     private String email ="";
@@ -90,5 +94,10 @@ public class User {
 
     public void setLast_logged(long last_logged) {
         this.last_logged = last_logged;
+    }
+
+    @Override
+    public DataBinder getViewBinder() {
+        return new UserItemView(this);
     }
 }

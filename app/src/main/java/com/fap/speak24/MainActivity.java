@@ -3,6 +3,7 @@ package com.fap.speak24;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.fap.speak24.model.User;
 import com.google.firebase.database.ChildEventListener;
@@ -12,14 +13,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.vn.fa.adapter.FaAdapter;
+import com.vn.fa.adapter.infinite.InfiniteAdapter;
+import com.vn.fa.adapter.multipleviewtype.IViewBinder;
+import com.vn.fa.widget.FaRecyclerView;
 
-public class MainActivity extends BaseActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity implements MainView{
+    @BindView(R.id.list)
+    FaRecyclerView recyclerView;
     private DatabaseReference mDatabase;
+    private FaAdapter mAdapter;
+
     @Override
     protected void initView(Bundle bundle) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("User");
         test();
+        loadData();
     }
 
     @Override
@@ -27,18 +42,43 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    private void test(){
+    private void loadData(){
+        List<User> listUsers = new ArrayList<>();
+        for(int i=0; i<100; i++){
+            User user = new User();
+            user.setUser_name("User "+i);
+            listUsers.add(user);
+        }
+        mAdapter = new FaAdapter();
+        List<IViewBinder> viewBinders = (List<IViewBinder>) (List) listUsers;
+        mAdapter.addAllDataObject(viewBinders);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
+        mAdapter.setOnLoadMoreListener(new InfiniteAdapter.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+    }
+    private void test() {
         // Write a message to the database
 
         String userId = mDatabase.push().getKey();
 
-        User user= new User();
+        User user = new User();
         user.setEmail("binhbt1@abc.com");
-       // String data = new Gson().toJson(user);
+        // String data = new Gson().toJson(user);
 
         mDatabase.child(userId).setValue(user);
     }
-    private void onDataChanged(){
+
+    private void onDataChanged() {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -55,12 +95,14 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-    private void update(String userId){
+
+    private void update(String userId) {
         String newEmail = "androidhive@gmail.com";
 
         mDatabase.child(userId).child("email").setValue(newEmail);
     }
-    private void getList(){
+
+    private void getList() {
         // My top posts by number of stars
         //String myUserId = getUid();
         Query myTopPostsQuery = mDatabase.child("User").child("user_status").equalTo("ONLINE");
@@ -93,4 +135,5 @@ public class MainActivity extends BaseActivity {
             // ...
         });
     }
+
 }
