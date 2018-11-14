@@ -10,6 +10,15 @@ public class User {
     private String status_message ="";
     private UserStatus user_status = UserStatus.OFF_LINE;
     private long last_logged = System.currentTimeMillis();
+    private String skype_id ="";
+
+    public String getSkype_id() {
+        return skype_id;
+    }
+
+    public void setSkype_id(String skype_id) {
+        this.skype_id = skype_id;
+    }
 
     public int getId() {
         return id;
