@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/holo_blue_light"
     android:gravity="center_vertical">
 
@@ -11,12 +12,24 @@
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
         android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
         android:src="@drawable/ic_launcher_background"
         tools:text="Sample card" />
+
+    <com.github.ivbaranov.mli.MaterialLetterIcon
+        android:id="@+id/avatar"
+        android:layout_width="50dp"
+        app:mli_shape_color="@color/colorPrimary"
+        app:mli_shape_type="circle"
+        app:mli_letter_color="@android:color/white"
+        app:mli_letter_size="26"
+        app:mli_letters_number="1"
+        app:mli_initials="false"
+        app:mli_initials_number="2"
+        android:layout_height="50dp" />
 
     <TextView
         android:id="@+id/txt_title"

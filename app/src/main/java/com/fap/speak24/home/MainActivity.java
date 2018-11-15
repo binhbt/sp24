@@ -1,10 +1,12 @@
-package com.fap.speak24;
+package com.fap.speak24.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 
+import com.fap.speak24.BaseActivity;
+import com.fap.speak24.R;
 import com.fap.speak24.model.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,23 +20,29 @@ import com.vn.fa.adapter.infinite.InfiniteAdapter;
 import com.vn.fa.adapter.multipleviewtype.IViewBinder;
 import com.vn.fa.widget.FaRecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity implements MainView{
+public class MainActivity extends BaseActivity implements MainView {
     @BindView(R.id.list)
     FaRecyclerView recyclerView;
     private DatabaseReference mDatabase;
     private FaAdapter mAdapter;
-
+    private MainPresenter mainPresenter = new MainPresenter();
     @Override
     protected void initView(Bundle bundle) {
+        mainPresenter.attachView(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("User");
         test();
         loadData();
+        recyclerView.setRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
     }
 
     @Override
@@ -43,28 +51,8 @@ public class MainActivity extends BaseActivity implements MainView{
     }
 
     private void loadData(){
-        List<User> listUsers = new ArrayList<>();
-        for(int i=0; i<100; i++){
-            User user = new User();
-            user.setUser_name("User "+i);
-            listUsers.add(user);
-        }
-        mAdapter = new FaAdapter();
-        List<IViewBinder> viewBinders = (List<IViewBinder>) (List) listUsers;
-        mAdapter.addAllDataObject(viewBinders);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
 
-            }
-        });
-        mAdapter.setOnLoadMoreListener(new InfiniteAdapter.OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
 
-            }
-        });
     }
     private void test() {
         // Write a message to the database
@@ -136,4 +124,22 @@ public class MainActivity extends BaseActivity implements MainView{
         });
     }
 
+    @Override
+    public void loadUserToview(List<User> userList) {
+        if (mAdapter == null) {
+            mAdapter = new FaAdapter();
+            recyclerView.setAdapter(mAdapter);
+            mAdapter.setOnLoadMoreListener(new InfiniteAdapter.OnLoadMoreListener() {
+                @Override
+                public void onLoadMore() {
+
+                }
+            });
+        }
+        mAdapter.clear();
+        List<IViewBinder> viewBinders = (List<IViewBinder>) (List) userList;
+        mAdapter.addAllDataObject(viewBinders);
+
+
+    }
 }
