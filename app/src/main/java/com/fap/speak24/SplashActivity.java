@@ -46,7 +46,7 @@ public class SplashActivity extends AwesomeSplash {
 
 
         //Customize Title
-        configSplash.setTitleSplash("My Awesome App");
+        configSplash.setTitleSplash("Speak24 Connect People");
         configSplash.setTitleTextColor(R.color.colorPrimaryDark);
         configSplash.setTitleTextSize(30f); //float value
         configSplash.setAnimTitleDuration(3000);

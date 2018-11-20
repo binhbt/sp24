@@ -35,12 +35,11 @@ public class MainActivity extends BaseActivity implements MainView {
         mainPresenter.attachView(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("User");
-        test();
         loadData();
         recyclerView.setRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                mainPresenter.loadUserList();
             }
         });
     }
@@ -51,7 +50,7 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     private void loadData(){
-
+        mainPresenter.loadUserList();
 
     }
     private void test() {
@@ -135,11 +134,11 @@ public class MainActivity extends BaseActivity implements MainView {
 
                 }
             });
+            mAdapter.setLoadingLayout(R.layout.view_loading);
         }
         mAdapter.clear();
         List<IViewBinder> viewBinders = (List<IViewBinder>) (List) userList;
         mAdapter.addAllDataObject(viewBinders);
-
 
     }
 }
