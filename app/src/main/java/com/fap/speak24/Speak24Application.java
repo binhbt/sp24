@@ -1,6 +1,5 @@
 package com.fap.speak24;
 
-import com.fap.speak24.net.EndPoints;
 import com.vn.fa.base.FaApplication;
 import com.vn.fa.base.util.FaLog;
 

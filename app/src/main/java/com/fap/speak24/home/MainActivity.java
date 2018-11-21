@@ -23,10 +23,10 @@ public class MainActivity extends BaseActivity {
     Toolbar toolBar;
     @Override
     protected void initView(Bundle bundle) {
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
-        toolBar.setTitle(R.string.app_name);
-        setSupportActionBar(toolBar);
+//        setupViewPager(viewPager);
+//        tabLayout.setupWithViewPager(viewPager);
+//        toolBar.setTitle(R.string.app_name);
+//        setSupportActionBar(toolBar);
 
     }
 
