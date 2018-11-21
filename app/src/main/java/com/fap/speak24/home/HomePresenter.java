@@ -2,7 +2,6 @@ package com.fap.speak24.home;
 
 import android.util.Log;
 
-import com.fap.speak24.Const;
 import com.fap.speak24.ParseHelper;
 import com.fap.speak24.model.User;
 import com.fap.speak24.net.BaseRequest;
@@ -12,11 +11,6 @@ import com.vn.fa.base.data.net.request.RequestType;
 import com.vn.fa.base.mvp.BasePresenter;
 import com.vn.fa.net.RequestLoader;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +19,7 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Observable;
 
-public class MainPresenter extends BasePresenter<MainView> {
+public class HomePresenter extends BasePresenter<HomeView> {
     public void loadUserList() {
         List<User> listUsers = new ArrayList<>();
         for (int i = 0; i < 100; i++) {

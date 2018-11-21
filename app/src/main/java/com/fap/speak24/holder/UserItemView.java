@@ -32,9 +32,13 @@ public class UserItemView extends FaBinderView<User> {
         }else{
             holder1.mImageView.setVisibility(View.GONE);
             holder1.avatar.setVisibility(View.VISIBLE);
-            holder1.avatar.setLetter("Photo");
+            holder1.avatar.setLetter(data.getNick());
         }
-        holder1.txtTitle.setText("Photo "+ position);
+        holder1.txtStatus.setText(data.getStatus());
+        holder1.txtNick.setText(data.getNick());
+        holder1.txtAge.setText(data.getAge());
+
+
     }
 
     @Override
@@ -50,10 +54,19 @@ public class UserItemView extends FaBinderView<User> {
     static class PhotoViewHolder extends FaViewHolder {
         @BindView(R.id.photo)
         ImageView mImageView;
-        @BindView(R.id.txt_title)
-        TextView txtTitle;
+        @BindView(R.id.txt_status)
+        TextView txtStatus;
         @BindView(R.id.avatar)
         MaterialLetterIcon avatar;
+
+        @BindView(R.id.img_sex)
+        ImageView imgSex;
+        @BindView(R.id.txt_nick)
+        TextView txtNick;
+        @BindView(R.id.txt_age)
+        TextView txtAge;
+        @BindView(R.id.img_country)
+        ImageView imgCountry;
         public PhotoViewHolder(View view) {
             super(view);
         }
